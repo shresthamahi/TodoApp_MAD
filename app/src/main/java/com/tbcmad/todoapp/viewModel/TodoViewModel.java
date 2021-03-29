@@ -39,4 +39,6 @@ public class TodoViewModel extends AndroidViewModel {
     public void update(ETodo eTodo){
         mTodoRepository.update(eTodo);
     }
+
+    public void deleteAll() { mTodoRepository.deleteAll();}
 }

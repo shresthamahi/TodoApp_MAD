@@ -43,6 +43,9 @@ public class TodoRepository {
     public void delete(ETodo eTodo){
         new deleteTodoAysncTask(mTodoDAO).execute(eTodo);
     }
+    public void  deleteAll(){
+      new deleteAllTodoAysncTask(mTodoDAO).execute();
+    };
 
     public ETodo getTodoById(int id){
         return  mTodoDAO.getTodoById(id);
@@ -87,6 +90,19 @@ public class TodoRepository {
         @Override
         protected Void doInBackground(ETodo... eTodos) {
             mTodoDao.update(eTodos[0]);
+            return null;
+        }
+    }
+
+    private static class deleteAllTodoAysncTask extends AsyncTask<ETodo, Void, Void>{
+        private TodoDAO mTodoDao;
+        private deleteAllTodoAysncTask(TodoDAO todoDAO){
+            mTodoDao=todoDAO;
+        }
+
+        @Override
+        protected Void doInBackground(ETodo... eTodos) {
+            mTodoDao.deleteAll();
             return null;
         }
     }

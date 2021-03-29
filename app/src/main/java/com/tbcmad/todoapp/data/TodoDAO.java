@@ -26,6 +26,7 @@ public interface  TodoDAO {
     @Query("SELECT * FROM todo_table WHERE id=:id")
     ETodo getTodoById(int id);
 
+    
 
     @Update(onConflict = OnConflictStrategy.REPLACE)
     void update(ETodo... todo);
