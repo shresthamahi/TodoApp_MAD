@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CheckBox;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -76,11 +77,13 @@ public class ListTodoFragment extends Fragment {
 
     private class TodoHolder extends RecyclerView.ViewHolder{
         TextView title, date,desc;
+        CheckBox box;
         public TodoHolder(LayoutInflater inflater, ViewGroup parent){
             super(inflater.inflate(R.layout.list_item_todo, parent, false));
             title = itemView.findViewById(R.id.list_item_tv_title);
             date = itemView.findViewById(R.id.list_item_tv_date);
             desc = itemView.findViewById(R.id.list_item_tv_desc);
+            box = itemView.findViewById(R.id.list_item_tv_check);
             title.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -94,6 +97,12 @@ public class ListTodoFragment extends Fragment {
                 }
             });
             desc.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    loadUpdateItem();
+                }
+            });
+            box.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     loadUpdateItem();
@@ -115,6 +124,7 @@ public class ListTodoFragment extends Fragment {
             title.setText(todo.getTitle());
             date.setText(sdf.format(todo.getTodoDate()));
             desc.setText(todo.getDescription());
+            box.setChecked(todo.isCompleted());
         }
     }
 
