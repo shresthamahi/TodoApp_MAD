@@ -57,9 +57,13 @@ public class    EditTodoFragment extends Fragment {
         txtDescription = rootView.findViewById(R.id.edit_fragment_txt_description);
         txtDate = rootView.findViewById(R.id.edit_fragment_txt_date);
         rgPriority = rootView.findViewById(R.id.edit_fragment_rg_priority);
-        chComplete = rootView.findViewById(R.id.edit_fragment_chk_complete);
         btnSave = rootView.findViewById(R.id.edit_fragment_btn_save);
         btnCancel = rootView.findViewById(R.id.edit_fragment_btn_cancel);
+
+
+        chComplete = rootView.findViewById(R.id.edit_fragment_chk_complete);
+
+
 
         loadUpdateData();
 
@@ -89,7 +93,8 @@ public class    EditTodoFragment extends Fragment {
         return rootView;
     }
 
-    void SaveTodo(){
+    void SaveTodo() {
+        int valid=1;
         ETodo eTodo = new ETodo();
         Date todoDate = new Date();
         int checkedPriority = -1;
@@ -97,32 +102,56 @@ public class    EditTodoFragment extends Fragment {
         try {
             DateFormat format = new SimpleDateFormat("yyyy-MM-dd");
             todoDate = format.parse(txtDate.getText().toString());
-        }catch (ParseException ex){
+        } catch (ParseException ex) {
             ex.printStackTrace();
         }
         checkedPriority = rgPriority.getCheckedRadioButtonId();
 
-        switch (checkedPriority){
+        switch (checkedPriority) {
             case R.id.edit_fragment_rb_high:
                 priority = HIGH_PRIORITY;
                 break;
             case R.id.edit_fragment_rb_medium:
-                priority=MEDIUM_PRIORITY;
+                priority = MEDIUM_PRIORITY;
                 break;
             case R.id.edit_fragment_rb_low:
-                priority=LOW_PRIORITY;
+                priority = LOW_PRIORITY;
                 break;
         }
+        //check if it is empty
+        if (txtTitle.getText().length() == 0) {
+            valid=0;
+            txtTitle.requestFocus();
+            txtTitle.setError("An event must have title");
+            return;
 
-        eTodo.setTitle(txtTitle.getText().toString());
-        eTodo.setDescription(txtDescription.getText().toString());
-        eTodo.setTodoDate(todoDate);
-        eTodo.setPriority(priority);
-        eTodo.setCompleted(chComplete.isChecked());
+        }
+        if (txtDescription.getText().length() == 0) {
+            valid=0;
+            txtDescription.requestFocus();
+            txtDescription.setError("Please provide description");
+            return;
 
-        TodoViewModel viewModel  = new ViewModelProvider(this).get(TodoViewModel.class);
+        }
 
-        if(todoId != -1){
+        if (todoDate == null)
+        {
+            valid=0;
+            txtDate.requestFocus();
+            txtDate.setError("Date cannot be empty");
+            txtDate.setError("Please provide date!");
+        }
+
+        if(valid==1){
+            eTodo.setTitle(txtTitle.getText().toString());
+            eTodo.setDescription(txtDescription.getText().toString());
+            eTodo.setTodoDate(todoDate);
+            eTodo.setPriority(priority);
+            eTodo.setCompleted(chComplete.isChecked());
+
+        TodoViewModel viewModel = new ViewModelProvider(this).get(TodoViewModel.class);
+
+        if (todoId != -1) {
             eTodo.setId(todoId);
             viewModel.update(eTodo);
         } else {
@@ -130,9 +159,11 @@ public class    EditTodoFragment extends Fragment {
         }
 
 
-        Toast.makeText(getActivity(), "Todo Saved",Toast.LENGTH_SHORT).show();
-        Intent intent= new Intent(getActivity(),MainActivity.class);
+        Toast.makeText(getActivity(), "Todo Saved", Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent(getActivity(), MainActivity.class);
         startActivity(intent);
+
+        }//else closed
     }
 
     void loadUpdateData() {
