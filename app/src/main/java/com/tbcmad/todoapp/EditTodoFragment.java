@@ -233,7 +233,7 @@ public class    EditTodoFragment extends Fragment {
         AlertDialog.Builder alertDialog = new AlertDialog.Builder(getContext());
         alertDialog.setMessage(getString(R.string.alert_cancel))
                 .setTitle(getString(R.string.app_name))
-                .setIcon(R.mipmap.ic_launcher)
+                .setIcon(R.mipmap.todo_icon)
                 .setCancelable(false)
                 .setPositiveButton(getString(R.string.ok), new DialogInterface.OnClickListener() {
                     @Override

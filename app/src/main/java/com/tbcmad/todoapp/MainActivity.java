@@ -74,13 +74,7 @@ public class MainActivity extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(),"Completed Tasks are deleted", Toast.LENGTH_LONG).show();
                     break;
             case R.id.mnu_logout:
-                SharedPreferences preferences = getApplicationContext().getSharedPreferences("todo_pref", 0);
-                SharedPreferences.Editor editor = preferences.edit();
-                editor.clear();
-                editor.commit();
-                Intent intent= new Intent(this, LoginActivity.class);
-                startActivity(intent);
-                finish();
+                ShowLogoutAlert();
                 break;
         }
         return super.onOptionsItemSelected(item);
@@ -91,13 +85,44 @@ public class MainActivity extends AppCompatActivity {
         AlertDialog.Builder alertDialog = new AlertDialog.Builder(this);
         alertDialog.setMessage("Are you sure want to delete all tasks?")
                 .setTitle(getString(R.string.app_name))
-                .setIcon(R.mipmap.ic_launcher)
+                .setIcon(R.mipmap.todo_icon)
                 .setCancelable(false)
                 .setPositiveButton("Delete All", new DialogInterface.OnClickListener() {
                     @Override
                         public void onClick(DialogInterface dialog, int which) {
                            viewModel.deleteAll();
                         }
+                })
+                .setNegativeButton("Cancel",new DialogInterface.OnClickListener() {
+
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                    }
+                });
+
+
+        alertDialog.show();
+
+    }
+
+    void ShowLogoutAlert(){
+        Intent intent2= new Intent(this, LoginActivity.class);
+        AlertDialog.Builder alertDialog = new AlertDialog.Builder(this);
+        alertDialog.setMessage("Are you sure want to logout?")
+                .setTitle(getString(R.string.app_name))
+                .setIcon(R.mipmap.todo_icon)
+                .setCancelable(false)
+                .setPositiveButton("Logout", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        SharedPreferences preferences = getApplicationContext().getSharedPreferences("todo_pref", 0);
+                        SharedPreferences.Editor editor = preferences.edit();
+                        editor.clear();
+                        editor.commit();
+                        startActivity(intent2);
+                        finish();
+                    }
                 })
                 .setNegativeButton("Cancel",new DialogInterface.OnClickListener() {
 
