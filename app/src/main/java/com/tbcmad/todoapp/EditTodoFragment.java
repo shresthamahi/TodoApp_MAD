@@ -147,15 +147,14 @@ public class    EditTodoFragment extends Fragment {
         if (checkedPriority==-1)
         {
             valid=0;
-            rgPriority.requestFocus();
-            area.setText("Please provide your task priority level");
+            rb_medium.requestFocus();
+            area.setText("Please provide your task priority level!");
             return;
 
         }
 
 
         String state= (String) btnSave.getText();
-
         if (chComplete.isChecked() && state.equals("Save"))
         {
             valid=0;
@@ -182,7 +181,7 @@ public class    EditTodoFragment extends Fragment {
 
 
 
-        Toast.makeText(getActivity(), "Todo Saved", Toast.LENGTH_SHORT).show();
+        Toast.makeText(getActivity(), "Task Saved", Toast.LENGTH_SHORT).show();
         Intent intent = new Intent(getActivity(), MainActivity.class);
         startActivity(intent);
 

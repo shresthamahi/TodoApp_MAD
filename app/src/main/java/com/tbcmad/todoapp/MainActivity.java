@@ -7,9 +7,14 @@ import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.lifecycle.ViewModelProviders;
 
+import android.app.AlertDialog;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.nfc.Tag;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -22,11 +27,12 @@ import com.tbcmad.todoapp.viewModel.TodoViewModel;
 import java.util.Date;
 
 public class MainActivity extends AppCompatActivity {
-
+    private static  final String TAG = "FragmentActivity";
     FragmentManager fragmentManager;
     Fragment fragment;
     FloatingActionButton floatingActionButton;
     TodoViewModel viewModel;
+    int i = 0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -59,9 +65,8 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()){
             case R.id.mnu_delete_all:
-                viewModel = new ViewModelProvider(this).get(TodoViewModel.class);
-                viewModel.deleteAll();
-                Toast.makeText(getApplicationContext(),"All tasks deleted", Toast.LENGTH_LONG).show();
+                ShowDeleteAlert();
+
                 break;
                 case R.id.mnu_delete_cpmpleted:
                     viewModel = new ViewModelProvider(this).get(TodoViewModel.class);
@@ -80,4 +85,32 @@ public class MainActivity extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
+
+    void ShowDeleteAlert(){
+        viewModel = new ViewModelProvider(this).get(TodoViewModel.class);
+        AlertDialog.Builder alertDialog = new AlertDialog.Builder(this);
+        alertDialog.setMessage("Are you sure want to delete all tasks?")
+                .setTitle(getString(R.string.app_name))
+                .setIcon(R.mipmap.ic_launcher)
+                .setCancelable(false)
+                .setPositiveButton("Delete All", new DialogInterface.OnClickListener() {
+                    @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                           viewModel.deleteAll();
+                        }
+                })
+                .setNegativeButton("Cancel",new DialogInterface.OnClickListener() {
+
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                    }
+                });
+
+
+        alertDialog.show();
+
+    }
+
+
 }
