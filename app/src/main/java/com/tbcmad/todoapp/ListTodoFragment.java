@@ -146,16 +146,19 @@ public class ListTodoFragment extends Fragment {
         public void onBindViewHolder(@NonNull TodoHolder holder, int position) {
             ETodo todo = eTodoList.get(position);
             LinearLayout layout =(LinearLayout)((ViewGroup)holder.title.getParent());
-
+            LinearLayout layout2 =(LinearLayout)((ViewGroup)holder.desc.getParent());
             switch (todo.getPriority()) {
                 case 1:
                     layout.setBackgroundColor(getResources().getColor(R.color.color_high));
+                    layout2.setBackgroundColor(getResources().getColor(R.color.color_high));
                     break;
                 case 2:
                     layout.setBackgroundColor(getResources().getColor(R.color.color_medium));
+                    layout2.setBackgroundColor(getResources().getColor(R.color.color_medium));
                     break;
                 case 3:
                     layout.setBackgroundColor(getResources().getColor(R.color.color_low));
+                    layout2.setBackgroundColor(getResources().getColor(R.color.color_low));
                     break;
             }
             holder.bind(todo);

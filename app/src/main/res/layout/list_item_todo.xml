@@ -11,23 +11,26 @@
 
         <TextView
             android:id="@+id/list_item_tv_title"
-            android:layout_width="260dp"
+            android:layout_width="277dp"
             android:layout_height="wrap_content"
             android:height="30dp"
+            android:fontFamily="sans-serif-condensed"
             android:gravity="center"
             android:text="TextView"
             android:textColor="#0E0E0E"
-            android:textSize="18sp" />
+            android:textSize="24sp"
+            android:textStyle="italic" />
 
         <TextView
             android:id="@+id/list_item_tv_date"
-            android:layout_width="147dp"
+            android:layout_width="133dp"
             android:layout_height="wrap_content"
             android:width="20dp"
             android:height="30dp"
+            android:fontFamily="sans-serif-condensed-light"
             android:text="TextView"
             android:textColor="#0E0E0E"
-            android:textSize="18sp" />
+            android:textSize="14sp" />
     </LinearLayout>
 
     <LinearLayout
@@ -40,6 +43,8 @@
             android:layout_width="150dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:fontFamily="sans-serif-condensed-light"
+            android:paddingLeft="3dp"
             android:text="@string/edit_description"
             android:textColor="#0E0E0E"
             android:textSize="18sp" />
@@ -49,6 +54,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:fontFamily="sans-serif-condensed-light"
             android:text="Is Completed" />
     </LinearLayout>
 

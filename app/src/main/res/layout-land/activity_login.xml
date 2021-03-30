@@ -19,13 +19,12 @@
         app:layout_constraintHorizontal_bias="0.517"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.721" />
+        app:layout_constraintVertical_bias="0.597" />
 
     <EditText
         android:id="@+id/login_username"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
         android:ems="10"
         android:gravity="center_horizontal|fill_horizontal"
         android:inputType="textPersonName"
@@ -69,7 +68,6 @@
         android:id="@+id/textView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
         android:gravity="center_horizontal|fill_horizontal"
         android:shadowColor="#FFFFFF"
         android:text="@string/login_password"

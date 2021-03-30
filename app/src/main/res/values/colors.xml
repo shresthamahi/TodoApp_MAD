@@ -8,8 +8,8 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="bgColorFab">#F44336</color>
-    <color name="color_high">#F12213</color>
-    <color name="color_medium">#FFEB3B</color>
-    <color name="color_low">#4CAF50</color>
+    <color name="color_high">#ACA9A7</color>
+    <color name="color_medium">#C5C3C1</color>
+    <color name="color_low">#E1DCD8</color>
 
 </resources>

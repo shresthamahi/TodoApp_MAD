@@ -15,6 +15,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="15dp"
         android:ems="10"
+        android:fontFamily="sans-serif-condensed-light"
         android:hint="@string/edit_title"
         android:inputType="textPersonName" />
 
@@ -25,6 +26,7 @@
         android:layout_marginBottom="15dp"
         android:height="150dp"
         android:ems="10"
+        android:fontFamily="sans-serif-condensed-light"
         android:hint="@string/edit_description"
         android:inputType="textMultiLine|textPersonName"
         android:lines="5"
@@ -53,6 +55,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:background="@color/color_high"
+            android:fontFamily="sans-serif-condensed-light"
             android:text="@string/edit_high" />
 
         <RadioButton
@@ -61,6 +64,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:background="@color/color_medium"
+            android:fontFamily="sans-serif-condensed-light"
             android:text="@string/edit_medium" />
 
         <RadioButton
@@ -69,6 +73,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:background="@color/color_low"
+            android:fontFamily="sans-serif-condensed-light"
             android:text="@string/edit_low" />
     </RadioGroup>
 
@@ -77,6 +82,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="15dp"
+        android:fontFamily="sans-serif-condensed-light"
         android:text="Completed"
         android:textSize="18sp" />
 
@@ -98,7 +104,9 @@
             android:layout_height="wrap_content"
             android:layout_marginRight="10dp"
             android:layout_weight="1"
-            android:text="@string/edit_save" />
+            android:fontFamily="sans-serif-condensed"
+            android:text="@string/edit_save"
+            android:textStyle="bold" />
 
         <Button
             android:id="@+id/edit_fragment_btn_cancel"
@@ -106,7 +114,9 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:layout_weight="1"
-            android:text="@string/cancel" />
+            android:fontFamily="sans-serif-condensed"
+            android:text="@string/cancel"
+            android:textStyle="bold" />
     </LinearLayout>
 
 </LinearLayout>
