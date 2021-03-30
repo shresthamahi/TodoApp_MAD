@@ -64,6 +64,8 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(),"All tasks deleted", Toast.LENGTH_LONG).show();
                 break;
                 case R.id.mnu_delete_cpmpleted:
+                    viewModel = new ViewModelProvider(this).get(TodoViewModel.class);
+                    viewModel.deleteCompleted();
                     Toast.makeText(getApplicationContext(),"Completed Tasks are deleted", Toast.LENGTH_LONG).show();
                     break;
             case R.id.mnu_logout:
