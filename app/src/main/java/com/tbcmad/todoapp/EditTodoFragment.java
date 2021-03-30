@@ -40,7 +40,7 @@ public class    EditTodoFragment extends Fragment {
     RadioGroup rgPriority;
     Button btnSave, btnCancel;
     CheckBox chComplete;
-
+    RadioButton rb_medium;
     int todoId;
 
     public static final int HIGH_PRIORITY = 1;
@@ -59,7 +59,7 @@ public class    EditTodoFragment extends Fragment {
         rgPriority = rootView.findViewById(R.id.edit_fragment_rg_priority);
         btnSave = rootView.findViewById(R.id.edit_fragment_btn_save);
         btnCancel = rootView.findViewById(R.id.edit_fragment_btn_cancel);
-
+        rb_medium = rootView.findViewById(R.id.edit_fragment_rb_medium);
 
         chComplete = rootView.findViewById(R.id.edit_fragment_chk_complete);
 
@@ -138,9 +138,19 @@ public class    EditTodoFragment extends Fragment {
         {
             valid=0;
             txtDate.requestFocus();
-            txtDate.setError("Date cannot be empty");
             txtDate.setError("Please provide date!");
+            return;
         }
+
+        if (checkedPriority==-1)
+        {
+            valid=0;
+            rgPriority.requestFocus();
+            rb_medium.setError("Select Priority Level");
+            return;
+
+        }
+
 
         if(valid==1){
             eTodo.setTitle(txtTitle.getText().toString());
