@@ -22,6 +22,7 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.tbcmad.todoapp.model.ETodo;
@@ -42,6 +43,7 @@ public class    EditTodoFragment extends Fragment {
     CheckBox chComplete;
     RadioButton rb_medium;
     int todoId;
+    TextView area;
 
     public static final int HIGH_PRIORITY = 1;
     public static final int MEDIUM_PRIORITY = 2;
@@ -62,7 +64,7 @@ public class    EditTodoFragment extends Fragment {
         rb_medium = rootView.findViewById(R.id.edit_fragment_rb_medium);
 
         chComplete = rootView.findViewById(R.id.edit_fragment_chk_complete);
-
+        area= rootView.findViewById(R.id.edit_fragment_tv_warning);
 
 
         loadUpdateData();
@@ -146,11 +148,21 @@ public class    EditTodoFragment extends Fragment {
         {
             valid=0;
             rgPriority.requestFocus();
-            rb_medium.setError("Select Priority Level");
+            area.setText("Please provide your task priority level");
             return;
 
         }
 
+
+        String state= (String) btnSave.getText();
+
+        if (chComplete.isChecked() && state.equals("Save"))
+        {
+            valid=0;
+            chComplete.requestFocus();
+            area.setText("A task cannot be completed on creation!");
+            return;
+        }
 
         if(valid==1){
             eTodo.setTitle(txtTitle.getText().toString());
@@ -167,6 +179,7 @@ public class    EditTodoFragment extends Fragment {
         } else {
             viewModel.insert(eTodo);
         }
+
 
 
         Toast.makeText(getActivity(), "Todo Saved", Toast.LENGTH_SHORT).show();
