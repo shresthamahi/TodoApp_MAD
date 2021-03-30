@@ -17,6 +17,7 @@ import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.tbcmad.todoapp.model.ETodo;
+import com.tbcmad.todoapp.viewModel.TodoViewModel;
 
 import java.util.Date;
 
@@ -25,6 +26,7 @@ public class MainActivity extends AppCompatActivity {
     FragmentManager fragmentManager;
     Fragment fragment;
     FloatingActionButton floatingActionButton;
+    TodoViewModel viewModel;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.main_menu, menu);
+        getMenuInflater().inflate(R.menu.main_menu, menu);//fill the main activity with main menu
         return true;
     }
 
@@ -57,10 +59,12 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()){
             case R.id.mnu_delete_all:
-                Toast.makeText(getApplicationContext(),"Delete all", Toast.LENGTH_LONG).show();
+                viewModel = new ViewModelProvider(this).get(TodoViewModel.class);
+                viewModel.deleteAll();
+                Toast.makeText(getApplicationContext(),"All tasks deleted", Toast.LENGTH_LONG).show();
                 break;
                 case R.id.mnu_delete_cpmpleted:
-                    Toast.makeText(getApplicationContext(),"Delete Completed", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(),"Completed Tasks are deleted", Toast.LENGTH_LONG).show();
                     break;
             case R.id.mnu_logout:
                 SharedPreferences preferences = getApplicationContext().getSharedPreferences("todo_pref", 0);
