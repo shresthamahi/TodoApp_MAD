@@ -44,6 +44,7 @@ public class    EditTodoFragment extends Fragment {
     RadioButton rb_medium;
     int todoId;
     TextView area;
+    int j=0;
 
     public static final int HIGH_PRIORITY = 1;
     public static final int MEDIUM_PRIORITY = 2;
@@ -68,6 +69,12 @@ public class    EditTodoFragment extends Fragment {
 
 
         loadUpdateData();
+        String s = txtTitle.getText().toString();
+        //check saved Instance
+        if(savedInstanceState!=null) {
+            int i = savedInstanceState.getInt("quizIndex",0);
+            j =i;
+        }
 
         txtDate.setOnTouchListener(new View.OnTouchListener() {
             @Override
@@ -254,8 +261,10 @@ public class    EditTodoFragment extends Fragment {
 
     @Override
     public void onSaveInstanceState(@NonNull Bundle outState) {
+
+
         super.onSaveInstanceState(outState);
-        outState.putAll(outState);
+        outState.putInt("key", j);
 
     }
 
