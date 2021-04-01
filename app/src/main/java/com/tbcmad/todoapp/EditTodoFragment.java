@@ -47,6 +47,7 @@ public class    EditTodoFragment extends Fragment {
     TextView area;
     int j=0;
     String s;
+    int dateSet=0;
 
     public static final int HIGH_PRIORITY = 1;
     public static final int MEDIUM_PRIORITY = 2;
@@ -150,11 +151,11 @@ public class    EditTodoFragment extends Fragment {
 
         }
 
-        if (todoDate == null)
+        if (dateSet==0)
         {
             valid=0;
             txtDate.requestFocus();
-            txtDate.setError("Please provide date!");
+            area.setText("Please choose your task date!");
             return;
         }
 
@@ -176,6 +177,7 @@ public class    EditTodoFragment extends Fragment {
             area.setText("A task cannot be completed on creation!");
             return;
         }
+
 
         if(valid==1){
             eTodo.setTitle(txtTitle.getText().toString());
@@ -237,7 +239,8 @@ public class    EditTodoFragment extends Fragment {
         DatePickerDialog pickerDialog = new DatePickerDialog(getActivity(), new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-                txtDate.setText(year + "-" + month + "-" + dayOfMonth);
+                txtDate.setText(year + "-" + (month+1) + "-" + dayOfMonth);
+                dateSet=1;
             }
         }, cYear, cMonth, cDay);
         pickerDialog.show();
@@ -268,8 +271,5 @@ public class    EditTodoFragment extends Fragment {
 
 
 
-    @Override
-    public void onViewStateRestored(@Nullable Bundle savedInstanceState) {
-        super.onViewStateRestored(savedInstanceState);
-    }
+
 }
