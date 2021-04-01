@@ -25,6 +25,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="15dp"
         android:height="150dp"
+        android:background="#F4F1F1"
         android:ems="10"
         android:fontFamily="sans-serif-condensed-light"
         android:hint="@string/edit_description"
@@ -39,6 +40,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="15dp"
         android:ems="10"
+        android:fontFamily="sans-serif-condensed-light"
         android:hint="@string/edit_date"
         android:inputType="textPersonName" />
 

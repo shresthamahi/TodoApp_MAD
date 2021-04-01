@@ -151,7 +151,7 @@ public class    EditTodoFragment extends Fragment {
 
         }
 
-        if (dateSet==0)
+        if (txtDate.length()==0)
         {
             valid=0;
             txtDate.requestFocus();
