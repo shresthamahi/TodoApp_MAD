@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
@@ -45,6 +46,7 @@ public class    EditTodoFragment extends Fragment {
     int todoId;
     TextView area;
     int j=0;
+    String s;
 
     public static final int HIGH_PRIORITY = 1;
     public static final int MEDIUM_PRIORITY = 2;
@@ -69,12 +71,12 @@ public class    EditTodoFragment extends Fragment {
 
 
         loadUpdateData();
-        String s = txtTitle.getText().toString();
+
         //check saved Instance
         if(savedInstanceState!=null) {
-            int i = savedInstanceState.getInt("quizIndex",0);
-            j =i;
-        }
+            String val= txtTitle.getText().toString();
+             s = savedInstanceState.getString("key",val);
+             }
 
         txtDate.setOnTouchListener(new View.OnTouchListener() {
             @Override
@@ -101,7 +103,12 @@ public class    EditTodoFragment extends Fragment {
         });
         return rootView;
     }
-
+    @Override
+    public void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putString("key",s);
+        txtTitle.setText(s);
+    }
     void SaveTodo() {
         int valid=1;
         ETodo eTodo = new ETodo();
@@ -259,13 +266,10 @@ public class    EditTodoFragment extends Fragment {
         alertDialog.show();
     }
 
+
+
     @Override
-    public void onSaveInstanceState(@NonNull Bundle outState) {
-
-
-        super.onSaveInstanceState(outState);
-        outState.putInt("key", j);
-
+    public void onViewStateRestored(@Nullable Bundle savedInstanceState) {
+        super.onViewStateRestored(savedInstanceState);
     }
-
 }
